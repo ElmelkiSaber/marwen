@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Creer offre de voyage</h1>
+        <a href="{{ path('offrevoyage_index') }}">Listes des offres de voyages</a>
+   {{ form_start(form) }}
+
+                         <table class="table table-bordered table-striped table-condensed">
+                             <thead>
+
+                             <tr>
+                                 <th>{{ form_widget(form) }}</th>
+                             </tr>
+                             </thead>
+                             <tbody>
+                         </table>
+                         <input type="submit" value="valider"/>
+                          {{ form_end(form) }}
+
+{% endblock %}

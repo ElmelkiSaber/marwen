@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Offre de voyage details</h1>
+    <a href="{{path('offrevoyage_index')}}">listes des offres</a>
+    <hr />
+    <table>
+      <thead>
+        <th>#</th>
+        <th>Prix offre</th>
+        <th>nombre de place</th>
+      </thead>
+        <tbody>
+            <tr>
+                <td>{{ offreVoyage.id }}</td>
+                <td>{{ offreVoyage.prixOffre }}</td>
+                <td>{{ offreVoyage.nbrPlaceOffre }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    Client:
+    <table>
+    <thead>
+        <th>#</th>
+        <th>Nom client</th>
+        <th>Prenom Client</th>
+        <th>telephone Client</th>
+        <th>addresse Client</th>
+        <th>ville Client</th>
+        <th>email Client</th>
+    </thead>
+    {% for client in offreVoyage.client %}
+    <tr>
+      <td>{{client.id}}</td>
+      <td>{{client.nomClient}}</td>
+      <td>{{client.prenomClient}}</td>
+      <td>{{client.telClient}}</td>
+      <td>{{client.addresseClient}}</td>
+      <td>{{client.ville}}</td>
+      <td>{{client.emailClient}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <hr />
+    Transport:
+    <table>
+    <thead>
+        <th>#</th>
+        <th>Nom compagne</th>
+        <th>date depart</th>
+        <th>Prix transport</th>
+        <th>ville arrive</th>
+        <th>ville depart</th>
+    </thead>
+    {% for transport in offreVoyage.transport %}
+    <tr>
+      <td>{{transport.id}}</td>
+      <td>{{transport.nomCompagne}}</td>
+      <td>{% if transport.dateDepart %}{{ transport.dateDepart|date('Y-m-d H:i:s') }}{% endif %}</td>
+      <td>{{transport.prixTransport}}</td>
+      <td>{{transport.villeArrive}}</td>
+      <td>{{transport.villeDepart}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <hr />
+    Hotel:
+    <table>
+    <thead>
+        <th>#</th>
+        <th>Nom etoile</th>
+        <th>ville hotel</th>
+    </thead>
+    {% for hotel in offreVoyage.hotel %}
+    <tr>
+      <td>{{hotel.id}}</td>
+      <td>{{hotel.nbrEtoile}}</td>
+      <td>{{hotel.villeHotel}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <hr />
+     Chambre:
+    <table>
+    <thead>
+        <th>#</th>
+        <th>type de chambre</th>
+        <th>nombre des lits</th>
+        <th>nombre des chambres</th>
+    </thead>
+    {% for hotel in offreVoyage.hotel %}
+    {%for chambre in hotel.chambre %}
+    <tr>
+      <td>{{chambre.id}}</td>
+      <td>{{chambre.typeChambre}}</td>
+      <td>{{chambre.nbrLits}}</td>
+      <td>{{chambre.prixChambre}}</td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+    </table>
+    <hr />
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listes des offres de voyage</h1>
+    <a href="{{path('offrevoyage_new')}}">ajouter un offre de voyage</a>
+    <hr />
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Prix offre</th>
+                <th>nombre de place</th>
+                <th>client</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offreVoyage in offreVoyages %}
+            <tr>
+                <td>{{ offreVoyage.id }}</td>
+                <td>{{ offreVoyage.prixOffre }}</td>
+                <td>{{ offreVoyage.nbrPlaceOffre }}</td>
+                <td>{{ offreVoyage.nbrPlaceOffre }}</td>
+                <td><a href="{{ path('offrevoyage_edit', { 'id': offreVoyage.id }) }}">edit</a></td>
+                <td><a href="{{ path('offrevoyage_show', { 'id': offreVoyage.id }) }}">show</a></td>
+                <td><a href="{{ path('offrevoyage_delete', { 'id': offreVoyage.id }) }}">delete</a></td>
+             </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
